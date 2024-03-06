@@ -24,7 +24,13 @@ const Search: React.FC<SearchProps> = ({
       <Image
         src={InputSearchIcon}
         alt="Search"
-        style={{ position: "absolute", top: "16px", left: "12px" }}
+        style={{
+          position: "absolute",
+          top: "16px",
+          left: "12px",
+          cursor: "pointer",
+        }}
+        onClick={onSubmit}
       />
       <Input
         color="primary"

@@ -13,7 +13,7 @@ import { Search } from "@/components/molecules";
 import { statusList } from "./data";
 
 const UserActions = () => {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState<string>("");
 
   return (
     <Styled.Container>
