@@ -18,7 +18,7 @@ import { initiativesData } from "@/components/organisms/Content/data";
 // types
 import { Initiatives } from "@/components/organisms/Content/types";
 
-export default function Home() {
+export default function HomeInitiatives() {
   const [data, setData] = useState<Initiatives[]>([]);
 
   useEffect(() => {

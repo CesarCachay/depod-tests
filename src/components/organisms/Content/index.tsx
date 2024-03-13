@@ -9,7 +9,12 @@ import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import Paper from "@mui/material/Paper";
 import { visuallyHidden } from "@mui/utils";
+
+// types
 import { Initiatives, InitiativesListHeaders } from "./types";
+
+// styles
+import { Styled } from "./ContentStyled";
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -123,9 +128,8 @@ function EnhancedTableHead(props: EnhancedTableHeadProps) {
     <TableHead>
       <TableRow>
         {headCells.map((headCell) => (
-          <TableCell
+          <Styled.CustomTableHeadCell
             key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -141,7 +145,7 @@ function EnhancedTableHead(props: EnhancedTableHeadProps) {
                 </Box>
               ) : null}
             </TableSortLabel>
-          </TableCell>
+          </Styled.CustomTableHeadCell>
         ))}
       </TableRow>
     </TableHead>
@@ -187,7 +191,15 @@ export default function EnhancedTable(props: EnhancedTableProps) {
     <Box sx={{ width: "100%", paddingLeft: "100px", marginTop: "32px" }}>
       <Paper sx={{ width: "100%", mb: 2, maxWidth: "1200px", marginX: "auto" }}>
         <TableContainer>
-          <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
+          <Table
+            sx={{
+              minWidth: 750,
+              "& .MuiTableRow-root:hover": {
+                backgroundColor: "rgba(0, 124, 173, 0.08)",
+              },
+            }}
+            aria-labelledby="tableTitle"
+          >
             <EnhancedTableHead
               order={order}
               orderBy={orderBy}
@@ -198,20 +210,29 @@ export default function EnhancedTable(props: EnhancedTableProps) {
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
-                  <TableRow
-                    hover
-                    tabIndex={-1}
-                    key={row.id}
-                    sx={{ cursor: "pointer" }}
-                  >
-                    <TableCell align="right">{row.name}</TableCell>
-                    <TableCell align="right">{row.mnemonic}</TableCell>
-                    <TableCell align="right">{row.id}</TableCell>
-                    <TableCell align="right">{row.author}</TableCell>
-                    <TableCell align="right">{row.status}</TableCell>
-                    <TableCell align="right">{row.created}</TableCell>
-                    <TableCell align="right">{row.description}</TableCell>
-                  </TableRow>
+                  <Styled.CustomTableRow tabIndex={-1} key={row.id}>
+                    <Styled.CustomTableContentRow align="right">
+                      {row.name}
+                    </Styled.CustomTableContentRow>
+                    <Styled.CustomTableContentRow align="right">
+                      {row.mnemonic}
+                    </Styled.CustomTableContentRow>
+                    <Styled.CustomTableContentRow align="right">
+                      {row.id}
+                    </Styled.CustomTableContentRow>
+                    <Styled.CustomTableContentRow align="right">
+                      {row.author}
+                    </Styled.CustomTableContentRow>
+                    <Styled.CustomTableContentRow align="right">
+                      {row.status}
+                    </Styled.CustomTableContentRow>
+                    <Styled.CustomTableContentRow align="right">
+                      {row.created}
+                    </Styled.CustomTableContentRow>
+                    <Styled.CustomTableContentRow align="right">
+                      {row.description}
+                    </Styled.CustomTableContentRow>
+                  </Styled.CustomTableRow>
                 );
               })}
               {emptyRows > 0 && (
